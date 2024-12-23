@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color-primary: #222226;
+    --bg-color-secondary: #121214;
+    --bg-color-tertiary: #1E1E1E;
+
+    --surface-purple: #8538F2;
+    --text-color-primary: #fff;
+}
+
+body {
+    background-color: var(--bg-color-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--text-color-primary);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2.5rem;
+}

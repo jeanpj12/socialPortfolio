@@ -1,0 +1,14 @@
+.container {
+    width: 71.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    gap: 1rem;
+
+    main {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+}
