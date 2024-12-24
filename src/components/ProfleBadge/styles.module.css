@@ -1,0 +1,18 @@
+.profileBadge {
+    display: flex;
+    gap: 1rem;
+
+    .imageProfile {
+        width: 2.85rem;
+        height: 2.85rem;
+        background-color: var(--surface-purple);
+        border-radius: 50%;
+    }
+
+    &>div {
+        display: flex;
+        flex-direction: column;
+        letter-spacing: 0rem;
+    }
+
+}

@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --bg-color-primary: #222226;
     --bg-color-secondary: #121214;
     --bg-color-tertiary: #1E1E1E;
@@ -15,7 +15,6 @@
 
 body {
     background-color: var(--bg-color-primary);
-    font-family: 'Inter', sans-serif;
     font-size: 16px;
     color: var(--text-color-primary);
 
@@ -23,4 +22,10 @@ body {
     justify-content: center;
     align-items: flex-start;
     padding-top: 2.5rem;
+}
+
+body,
+input,
+button {
+    font-family: 'Inter', sans-serif;
 }
