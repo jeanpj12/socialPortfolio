@@ -2,4 +2,29 @@
     background-color: var(--bg-color-secondary);
     padding: 1.75rem 1rem;
     border-radius: .75rem;
+
+    .inputArea {
+        position: relative;
+        textarea {
+            width: 100%;
+            min-height: 10.5rem;
+            background-color: var(--bg-color-primary);
+            border: none;
+            resize: none;
+            border-radius: .5rem;
+            padding: 1rem;
+            color: var(--text-color-primary);
+            outline: 1px solid transparent;
+    
+            &::placeholder {
+                font-size: 1rem;
+                color: #ffffff57;
+            }
+
+            &:focus {
+                outline-color: var(--surface-purple);
+            }
+        }
+    }
+
 }

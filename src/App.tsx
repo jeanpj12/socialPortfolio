@@ -8,7 +8,7 @@ function App() {
     <div className={styles.container}>
       <SideProfile />
       <main>
-      <FormNewPost />
+      <FormNewPost placeholder='Publique alguma dúvida ou depoimento...'/>
       </main>
       <SideAds />
     </div>
