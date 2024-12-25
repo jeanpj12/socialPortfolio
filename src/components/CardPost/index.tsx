@@ -1,6 +1,5 @@
 import styles from './styles.module.css'
 import { ProfileBadge } from '../ProfleBadge'
-import { Button } from '../Buttons/Button'
 import { LikeButton } from '../Buttons/LikeButton';
 import { CommentButton } from '../Buttons/CommentButton';
 
