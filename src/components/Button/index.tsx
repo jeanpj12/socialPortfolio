@@ -14,6 +14,8 @@ export function Button({ title, isActive = false, variation = 1, ...rest }: Butt
         ${styles.button}
         ${isActive ? styles.active : ''}
         ${variation === 2 ? styles.variation02 : ''}
+        ${variation === 3 ? styles.variation03 : ''}
+        ${variation === 4 ? styles.variation04 : ''}
         `}>
         {title}
     </button>

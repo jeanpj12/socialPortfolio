@@ -17,4 +17,11 @@
         letter-spacing: .1rem;
 
     }
+
+    .buttonsPage{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
 }

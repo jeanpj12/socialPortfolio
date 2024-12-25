@@ -7,7 +7,6 @@
     color: var(--text-color-primary);
     text-transform: uppercase;
     font-weight: 700;
-    margin-block: 1rem .5rem;
     cursor: pointer;
     text-align: left;
     padding-inline: 1rem;
@@ -25,8 +24,24 @@
     background-color: var(--surface-purple);
 }
 
-.button + .button {
-    margin-block: .5rem;
+.variation03 {
+    font-size: .65rem;
+    width: auto;
+    height: 2rem;
+    border-radius: .2rem;
+    padding-inline: 2rem;
+    text-align: center;
+    background-color: var(--bg-color-primary);
+}
+
+.variation04 {
+    font-size: .65rem;
+    width: auto;
+    height: 2rem;
+    border-radius: .2rem;
+    padding-inline: 2rem;
+    text-align: center;
+    background-color: var(--bg-color-secondary);
 }
 
 .active {

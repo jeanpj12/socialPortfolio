@@ -5,10 +5,10 @@ import { ButtonEmoji } from './EmojiPicker'
 
 
 type TextAreaProps = React.ComponentProps<'textarea'> & {
-    emojiButton: boolean
+    emojiButton?: boolean
 }
 
-export function FormNewPost({emojiButton = true, ...rest }: TextAreaProps) {
+export function FormNewPost({ emojiButton = true, ...rest }: TextAreaProps) {
 
     const [text, setText] = useState('')
     const [showPicker, setShowPicker] = useState(false)
@@ -16,17 +16,18 @@ export function FormNewPost({emojiButton = true, ...rest }: TextAreaProps) {
     const handleEmojiClick = (emoji: string) => {
         setText((prevtext) => prevtext + emoji)
     }
-    
+
     return <div className={styles.newPost}>
         <div className={styles.inputArea}>
             <textarea {...rest}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            <ButtonEmoji onEmojiSelect={handleEmojiClick} showPicker={showPicker} setShowPicker={setShowPicker}/>
+            {emojiButton &&
+                <ButtonEmoji onEmojiSelect={handleEmojiClick} showPicker={showPicker} setShowPicker={setShowPicker} />}
         </div>
 
-        <div>
+        <div className={styles.sendPost}>
             <Button title='Publicar' variation={2} />
         </div>
     </div>

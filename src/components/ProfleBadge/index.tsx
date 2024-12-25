@@ -1,11 +1,17 @@
 import styles from './styles.module.css'
 
-export function ProfileBadge() {
+type ProfileProps = {
+    name: string
+    status: string
+    viewStatus?: boolean
+}
+
+export function ProfileBadge({name, status, viewStatus = true}: ProfileProps) {
     return <div className={styles.profileBadge}>
         <div className={styles.imageProfile}></div>
         <div>
-            <strong>UserName</strong>
-            <span>Status</span>
+            <strong>{name}</strong>
+            {viewStatus && <span>{status}</span>}
         </div>
     </div>
 }

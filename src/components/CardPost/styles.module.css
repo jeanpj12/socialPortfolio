@@ -1,0 +1,57 @@
+.cardPost {
+    background-color: var(--bg-color-tertiary);
+    border-radius: .75rem;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+
+    .post,
+    .cardComment,
+    .cardReply {
+        padding: 1.75rem 1rem;
+        border-radius: .75rem;
+        background: var(--bg-color-secondary);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+
+        .engagement {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+            align-content: center;
+        }
+    }
+
+    .comments {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-height: 20rem;
+        position: relative;
+
+        &::after{
+            content: '';
+            inset: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0) 50%, var(--bg-color-secondary) 90%);
+            position: absolute;
+        }
+
+        .cardComment {
+            font-size: .75rem;
+        }
+
+        .replies {
+            margin-top: .5rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+            .cardReply {
+                background: var(--bg-color-primary);
+                margin-left: 1rem;
+                font-size: .75rem;
+            }
+        }
+    }
+}
