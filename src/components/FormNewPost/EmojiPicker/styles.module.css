@@ -1,0 +1,70 @@
+.emoji {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1;
+
+    button {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        img{
+            width: 1.5rem;
+        }
+    }
+    
+    .picker {
+        position: absolute;
+        left: 2rem;
+        top: -2rem;
+        width: 15rem;
+        height: 15rem;
+        overflow-y: scroll;
+        padding: 1rem;
+        background-color: var(--bg-color-secondary);
+        border-radius: .5rem;
+        box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-wrap: wrap;
+        gap: .5rem;
+        animation: fadeIn 100ms linear forwards;
+
+        &::-webkit-scrollbar{
+            width: .25rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--surface-purple);
+            border-radius: 1rem;
+        }
+
+        & button {
+            border: none;
+            background: transparent;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-block: 0px 2px;
+            transition: background 200ms linear;
+            animation: fadeIn 300ms linear forwards;
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        scale: 0;
+    }
+
+    100% {
+        opacity: 1;
+        scale: 1;
+    }
+}
