@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './styles.module.css'
-import { Button } from '../Button'
+import { Button } from '../Buttons/Button'
 import { ButtonEmoji } from './EmojiPicker'
 
 

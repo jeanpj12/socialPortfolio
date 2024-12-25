@@ -1,6 +1,8 @@
 import styles from './styles.module.css'
 import { ProfileBadge } from '../ProfleBadge'
-import { Button } from '../Button'
+import { Button } from '../Buttons/Button'
+import { LikeButton } from '../Buttons/LikeButton';
+import { CommentButton } from '../Buttons/CommentButton';
 
 export function CardPost() {
 
@@ -94,8 +96,8 @@ export function CardPost() {
                 </span>
             </div>
             <div className={styles.engagement}>
-                <Button title='curtir' variation={3} />
-                <Button title='comentar' variation={3} />
+                <LikeButton />
+                <CommentButton />
             </div>
         </div>
         <div className={styles.comments}>
@@ -112,8 +114,8 @@ export function CardPost() {
                             </span>
                         </div>
                         <div className={styles.engagement}>
-                            <Button title='curtir' variation={3} />
-                            <Button title='responder' variation={3} />
+                        <LikeButton />
+                        <CommentButton />
                         </div>
                     </div>
                     <div className={styles.replies}>
@@ -128,8 +130,8 @@ export function CardPost() {
                                     </span>
                                 </div>
                                 <div className={styles.engagement}>
-                                    <Button title='curtir' variation={4} />
-                                    <Button title='responder' variation={4} />
+                                <LikeButton />
+                                <CommentButton />
                                 </div>
                             </div>
                         ))}

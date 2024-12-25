@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
 import { ProfileBadge } from '../ProfleBadge'
-import { Button } from '../Button'
+import { Button } from '../Buttons/Button'
 
 export function SideProfile() {
     return <div className={styles.sideBar}>
