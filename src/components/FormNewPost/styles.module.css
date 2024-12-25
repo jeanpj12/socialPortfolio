@@ -2,6 +2,7 @@
     background-color: var(--bg-color-secondary);
     padding: 1.75rem 1rem;
     border-radius: .75rem;
+    border: 0.5px solid rgba(255, 255, 255, 0.2);
 
     .inputArea {
         position: relative;
