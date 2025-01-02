@@ -2,10 +2,12 @@ import styles from './App.module.css'
 import { SideProfile } from './components/SideProfile'
 import { FormNewPost } from './components/FormNewPost'
 import { CardPost } from './components/CardPost'
+import { PostsProps } from './types/Post'
+import { useState } from 'react'
 
 function App() {
 
-  const post = [
+  const [posts, setPosts] = useState<PostsProps[]>([
     {
       id: 1032,
       user: {
@@ -28,13 +30,18 @@ function App() {
       ]
     }
   ]
+  )
+
+  const handleSendPost = (newPost: PostsProps) => {
+    setPosts((prevPosts) => [...prevPosts, newPost])
+  }
 
   return (
     <div className={styles.container}>
       <SideProfile />
       <main>
-        <FormNewPost placeholder='Publique alguma dúvida ou depoimento...' />
-        <CardPost posts={post} />
+        <FormNewPost placeholder='Publique alguma dúvida ou depoimento...' onAddPost={handleSendPost} />
+        <CardPost posts={posts} />
       </main>
     </div>
   )

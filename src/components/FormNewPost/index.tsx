@@ -2,19 +2,42 @@ import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { Button } from '../Buttons/Button'
 import { ButtonEmoji } from './EmojiPicker'
+import { PostsProps } from '../../types/Post'
 
 
-type TextAreaProps = React.ComponentProps<'textarea'> & {
+type postFormProps = React.ComponentProps<'textarea'> & {
+    onAddPost: (newPost: PostsProps) => void
     emojiButton?: boolean
 }
 
-export function FormNewPost({ emojiButton = true, ...rest }: TextAreaProps) {
+export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postFormProps) {
 
     const [text, setText] = useState('')
     const [showPicker, setShowPicker] = useState(false)
 
     const handleEmojiClick = (emoji: string) => {
         setText((prevtext) => prevtext + emoji)
+    }
+
+    const handleSendPost = () => {
+
+        if (!text.trim()) {
+            return
+        }
+
+        const newPost = {
+            id: Math.floor(Math.random() * 1000),
+            user: {
+                name: 'Robson Silva.',
+                status: 'Empreendedor'
+            },
+            publishedAt: new Date().toISOString(),
+            content: text,
+            comments: []
+        }
+        onAddPost(newPost)
+        setText('')
+        setShowPicker(false)
     }
 
     return <div className={styles.newPost}>
@@ -28,7 +51,7 @@ export function FormNewPost({ emojiButton = true, ...rest }: TextAreaProps) {
         </div>
 
         <div className={styles.sendPost}>
-            <Button title='Publicar' variation={2} />
+            <Button title='Publicar' variation={2} onClick={handleSendPost} />
         </div>
     </div>
 }
