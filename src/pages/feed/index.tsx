@@ -26,6 +26,17 @@ export function Feed() {
                     replies: []
                 }
             ]
+        },
+        {
+            id: 1032,
+            user: {
+                name: 'Jean Jr.',
+                status: 'Web Dev'
+            },
+            publishedAt: '2024-12-25T08:00:00Z',
+            content: 'Sensacional',
+            image: '/randomImage.jpg',
+            comments: []
         }
     ]
     )

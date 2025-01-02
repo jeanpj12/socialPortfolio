@@ -29,16 +29,18 @@ export function CardPost({ posts }: contentProps) {
                         <ProfileBadge name={post.user.name} status={post.user.status} />
                         <time dateTime={post.publishedAt}>{dateFormat(post.publishedAt)}</time>
                     </header>
-                    <div>
+                    <div className={styles.content}>
                         <span>
                             {post.content}
                         </span>
+
+                        {post.image && <img src={post.image} />}
                     </div>
                     <div className={styles.engagement}>
                         <LikeButton />
                     </div>
                 </div>
-                <Comment comments={post.comments} />
+                {post.comments && post.comments.length > 0 && <Comment comments={post.comments} />}
             </div>
         )))
 }

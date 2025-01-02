@@ -3,7 +3,8 @@ export interface PostsProps {
     user: userProps
     publishedAt: string
     content: string
-    comments?: CommentProps[]
+    image?: string
+    comments?: CommentProps[] | undefined
 }
 
 type RepliesProps = {
