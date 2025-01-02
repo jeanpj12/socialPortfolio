@@ -26,7 +26,7 @@ export function Comment({ comments }: CommentsProps) {
             <div className={styles.comment} key={comment.id}>
                 <div className={styles.cardComment} key={comment.id}>
                     <header>
-                        <ProfileBadge name={comment.user.name} status={comment.user.status} viewStatus={false} />
+                        <ProfileBadge name={comment.user.name} status={comment.user.status} />
                         <time dateTime={comment.publishedAt}>{dateFormat(comment.publishedAt)}</time>
                     </header>
                     <div>
@@ -42,7 +42,7 @@ export function Comment({ comments }: CommentsProps) {
                     {comment.replies && comment.replies.map((reply) => (
                         <div className={styles.cardReply} key={reply.id}>
                             <header>
-                                <ProfileBadge name={reply.user.name} status={reply.user.status} viewStatus={false} />
+                                <ProfileBadge name={reply.user.name} status={reply.user.status} />
                                 <time dateTime={comment.publishedAt}>{dateFormat(comment.publishedAt)}</time>
                             </header>
                             <div>

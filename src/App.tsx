@@ -9,8 +9,8 @@ function App() {
     {
       id: 1032,
       user: {
-        name: 'Jean Jr.',
-        status: 'Dev Web'
+        name: 'Robson Silva.',
+        status: 'Empreendedor'
       },
       publishedAt: '2024-12-25T08:00:00Z',
       content: 'Ótimos serviços',
