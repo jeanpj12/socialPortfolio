@@ -17,6 +17,7 @@ body {
     background-color: var(--bg-color-primary);
     font-size: 1rem;
     color: var(--text-color-primary);
+    padding-inline: 1rem;
 
     display: flex;
     justify-content: center;

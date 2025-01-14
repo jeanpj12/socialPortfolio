@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1032,
+        "portfolio": false,
+        "user": {
+            "name": "Robson Silva",
+            "status": "Empreendedor"
+        },
+        "publishedAt": "2024-12-25T08:00:00Z",
+        "content": "Ótimos serviços",
+        "comments": [
+            {
+                "id": 32,
+                "user": {
+                    "name": "Jean Jr.",
+                    "status": "Dev Web"
+                },
+                "publishedAt": "2024-12-25T08:00:00Z",
+                "comment": "Muito Obrigado",
+                "replies": []
+            }
+        ]
+    },
+    {
+        "id": 1032,
+        "portfolio": true,
+        "user": {
+            "name": "Jean Jr.",
+            "status": "Web Dev"
+        },
+        "publishedAt": "2024-12-25T08:00:00Z",
+        "content": "Sensacional",
+        "image": "/randomImage.jpg",
+        "comments": []
+    }
+]

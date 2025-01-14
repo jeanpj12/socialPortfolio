@@ -33,7 +33,6 @@ export function CardPost({ posts }: contentProps) {
                         <span>
                             {post.content}
                         </span>
-
                         {post.image && <img src={post.image} />}
                     </div>
                     <div className={styles.engagement}>

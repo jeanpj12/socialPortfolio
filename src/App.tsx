@@ -9,14 +9,14 @@ function App() {
         <div className={styles.container}>
             <Router>
                 <SideProfile />
-                <main>
+                <div className={styles.content}>
                     <Routes>
                         {routes.map((route) => {
                             const Component = route.component
                             return <Route key={route.path} path={route.path} element={<Component />} />
                         })}
                     </Routes>
-                </main>
+                </div>
             </Router>
         </div>
     )
