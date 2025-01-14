@@ -1,0 +1,12 @@
+.socialWrapper {
+    display: flex;
+    align-content: center;
+    justify-content: flex-start;
+    gap: .75rem;
+
+    img {
+        width: 1.5rem;
+        height: 1.5rem;
+        object-fit: contain;
+    }
+}

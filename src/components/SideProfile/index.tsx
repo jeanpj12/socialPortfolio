@@ -24,10 +24,7 @@ export function SideProfile() {
 
     return <div className={styles.sideBar}>
         <div className={styles.profileContainer}>
-            <ProfileBadge name='Jean Jr.' status='Dev Web' />
-            <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor ratione.
-            </span>
+            <ProfileBadge name='Jean Jr.' status='Developer' img='https://github.com/jeanpj12.png'/>
         </div>
         <div className={styles.buttonsPage}>
             <NavigateButton />

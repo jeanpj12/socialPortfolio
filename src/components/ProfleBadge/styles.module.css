@@ -5,8 +5,8 @@
     .imageProfile {
         width: 2.85rem;
         height: 2.85rem;
-        background-color: var(--surface-purple);
         border-radius: 50%;
+        object-fit: fill;
     }
 
     &>div {

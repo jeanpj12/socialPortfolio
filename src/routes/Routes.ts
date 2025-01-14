@@ -1,7 +1,7 @@
 import { Feed } from "../pages/feed"
 import { Portfolio } from "../pages/portfolio"
 import { Skills } from "../pages/skills"
-import { Contato } from "../pages/contato"
+import { Contact } from "../pages/contato"
 
 export const routes = [
     {
@@ -22,6 +22,6 @@ export const routes = [
     {
         title: 'Contato',
         path: '/contato',
-        component: Contato,
+        component: Contact,
     },
 ]
