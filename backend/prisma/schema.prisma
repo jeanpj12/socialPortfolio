@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  admin
+  costumer
+  guest
+}
+
+enum TypePost {
+  portfolio
+  normal
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String
+  role      UserRole  @default(costumer)
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+
+  Post     Post[]
+  comments comments[]
+}
+
+model Post {
+  id        String    @id @default(uuid())
+  userId    String    @map("user_id")
+  content   String
+  imageUrl  String?   @map("image_url")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  likeCount Int       @default(0)
+  typePost  TypePost  @default(normal)
+
+  user     User       @relation(fields: [userId], references: [id])
+  comments comments[]
+}
+
+model comments {
+  id        String    @id @default(uuid())
+  userid    String    @map("user_id")
+  postId    String    @map("post_id")
+  comment   String
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime? @updatedAt @map("updated_at")
+  likeCount Int       @default(0)
+
+  post Post @relation(fields: [postId], references: [id])
+  user User @relation(fields: [userid], references: [id])
+}
