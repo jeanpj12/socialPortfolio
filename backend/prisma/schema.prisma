@@ -29,6 +29,7 @@ model User {
 
   Post     Post[]
   comments Comments[]
+  Like     Likes[]
 
   @@map("users")
 }
@@ -45,21 +46,37 @@ model Post {
 
   user     User       @relation(fields: [userId], references: [id])
   comments Comments[]
+  Like     Likes[]
 
   @@map("posts")
 }
 
 model Comments {
   id        String    @id @default(uuid())
-  userid    String    @map("user_id")
+  userId    String    @map("user_id")
   postId    String    @map("post_id")
   comment   String
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
   likeCount Int       @default(0)
 
-  post Post @relation(fields: [postId], references: [id])
-  user User @relation(fields: [userid], references: [id])
+  post Post    @relation(fields: [postId], references: [id])
+  user User    @relation(fields: [userId], references: [id])
+  Like Likes[]
 
   @@map("comments")
+}
+
+model Likes {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  postId    String?  @map("post_id")
+  commentId String?  @map("comment_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  user     User      @relation(fields: [userId], references: [id])
+  post     Post?     @relation(fields: [postId], references: [id])
+  comments Comments? @relation(fields: [commentId], references: [id])
+
+  @@map("likes")
 }

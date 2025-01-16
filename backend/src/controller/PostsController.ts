@@ -6,7 +6,25 @@ import { AppError } from "@/utils/AppError";
 class PostsController {
 
     async index(req: Request, res: Response) {
-        const posts = await prisma.post.findMany()
+        const posts = await prisma.post.findMany({
+            include: {
+                comments: {
+                    select: {
+                        comment: true,
+                        id: true,
+                        likeCount: true,
+                        createdAt: true,
+                        user: {
+                            select: {
+                                name: true,
+                                id: true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        )
 
         res.json(posts)
     }
