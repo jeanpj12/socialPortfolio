@@ -18,7 +18,7 @@ class UserController {
         const userWithSameEmail = await prisma.user.findUnique({ where: { email } })
 
         if (userWithSameEmail) {
-            throw new AppError('Email already registere.d')
+            throw new AppError('Email already registere.')
         }
 
         const hashedPassword = await hash(password, 8)
