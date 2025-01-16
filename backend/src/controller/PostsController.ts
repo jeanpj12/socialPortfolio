@@ -8,12 +8,23 @@ class PostsController {
     async index(req: Request, res: Response) {
         const posts = await prisma.post.findMany({
             include: {
+                Like: {
+                    select: {
+                        userId: true,
+                        createdAt: true
+                    }
+                },
                 comments: {
                     select: {
                         comment: true,
                         id: true,
-                        likeCount: true,
                         createdAt: true,
+                        Like: {
+                            select: {
+                                userId: true,
+                                createdAt: true
+                            }
+                        },
                         user: {
                             select: {
                                 name: true,

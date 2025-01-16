@@ -41,7 +41,6 @@ model Post {
   imageUrl  String?   @map("image_url")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
-  likeCount Int       @default(0)
   typePost  TypePost  @default(normal)
 
   user     User       @relation(fields: [userId], references: [id])
@@ -58,7 +57,6 @@ model Comments {
   comment   String
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @updatedAt @map("updated_at")
-  likeCount Int       @default(0)
 
   post Post    @relation(fields: [postId], references: [id])
   user User    @relation(fields: [userId], references: [id])
