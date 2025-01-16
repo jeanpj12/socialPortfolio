@@ -3,6 +3,8 @@ import z from "zod";
 import { AppError } from "@/utils/AppError";
 import { prisma } from "@/database/prisma"
 import { compare, hash } from 'bcrypt'
+import { authConfig } from "@/configs/auth";
+import { sign } from 'jsonwebtoken'
 
 class SessionController {
     async create(req: Request, res: Response) {
@@ -26,7 +28,16 @@ class SessionController {
             throw new AppError('Invalid email or password')
         }
 
-        res.status(201).json()
+        const { secret, expiresIn } = authConfig.jwt
+
+        const token = sign({ role: user.role ?? 'guest' }, secret, {
+            subject: user.id,
+            expiresIn
+        })
+
+        const { password: hashpassword, ...userWithoutPassword } = user
+
+        res.status(201).json({ token, user: userWithoutPassword })
     }
 }
 

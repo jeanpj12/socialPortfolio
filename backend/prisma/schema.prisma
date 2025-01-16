@@ -28,7 +28,9 @@ model User {
   updatedAt DateTime? @updatedAt @map("updated_at")
 
   Post     Post[]
-  comments comments[]
+  comments Comments[]
+
+  @@map("users")
 }
 
 model Post {
@@ -42,10 +44,12 @@ model Post {
   typePost  TypePost  @default(normal)
 
   user     User       @relation(fields: [userId], references: [id])
-  comments comments[]
+  comments Comments[]
+
+  @@map("posts")
 }
 
-model comments {
+model Comments {
   id        String    @id @default(uuid())
   userid    String    @map("user_id")
   postId    String    @map("post_id")
@@ -56,4 +60,6 @@ model comments {
 
   post Post @relation(fields: [postId], references: [id])
   user User @relation(fields: [userid], references: [id])
+
+  @@map("comments")
 }
