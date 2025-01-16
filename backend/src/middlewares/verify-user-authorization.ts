@@ -2,6 +2,7 @@ import { AppError } from "@/utils/AppError";
 import { Response, Request, NextFunction, request } from "express";
 
 function verifyUserAuthorization(role: string[]) {
+    
     return (req: Request, res: Response, next: NextFunction) => {
         if (!req.user) {
             throw new AppError('Unauthorized', 401)

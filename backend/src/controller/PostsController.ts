@@ -4,6 +4,14 @@ import { prisma } from "@/database/prisma"
 import { AppError } from "@/utils/AppError";
 
 class PostsController {
+
+    async index(req: Request, res: Response) {
+        const posts = await prisma.post.findMany()
+
+        res.json(posts)
+    }
+
+
     async create(req: Request, res: Response) {
 
         const bodySchema = z.object({
