@@ -3,8 +3,14 @@ import { ProfileBadge } from '../ProfleBadge'
 import { Button } from '../Buttons/Button'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { routes } from '../../routes/Routes'
+import React from 'react'
 
-export function SideProfile() {
+type Props = {
+    openLoginModal: React.Dispatch<React.SetStateAction<boolean>>
+    openSingUpModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -19,12 +25,27 @@ export function SideProfile() {
                 />
             ))
             }
+            <div className={styles.doubleCol}>
+                <Button
+                    key='login'
+                    title='Login'
+                    variation={2}
+                    onClick={() => openLoginModal(true)}
+                    />
+
+                <Button
+                    key='Sign up'
+                    title='Sign up'
+                    variation={2}
+                    onClick={() => openSingUpModal(true)}
+                />
+            </div>
         </>
     }
 
     return <div className={styles.sideBar}>
         <div className={styles.profileContainer}>
-            <ProfileBadge name='Jean Jr.' status='Developer' img='https://github.com/jeanpj12.png'/>
+            <ProfileBadge name='Jean Jr.' status='Developer' img='https://github.com/jeanpj12.png' />
         </div>
         <div className={styles.buttonsPage}>
             <NavigateButton />

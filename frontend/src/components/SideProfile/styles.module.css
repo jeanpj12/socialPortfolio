@@ -26,4 +26,9 @@
         gap: 1rem;
         margin-top: 1rem;
     }
+
+    .doubleCol {
+        display: flex;
+        gap: .75rem;
+    }
 }
