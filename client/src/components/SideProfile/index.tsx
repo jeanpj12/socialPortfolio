@@ -23,6 +23,11 @@ export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
         cookies.get('jwt') ? setIsLoggedIn(true) : setIsLoggedIn(false)
     }, [cookies])
 
+    const handleLogout = () => {
+        cookies.remove('jwt')
+        window.location.href = '/'
+    }
+
     function NavigateButton() {
         return <>
             {routes.map((route) => (
@@ -62,7 +67,7 @@ export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
                         key='Sair'
                         title='Sair'
                         variation={2}
-                        onClick={() => openSingUpModal(true)}
+                        onClick={handleLogout}
                     />
                 </div>
             }
