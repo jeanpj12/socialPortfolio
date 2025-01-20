@@ -3,7 +3,8 @@ import { ProfileBadge } from '../ProfleBadge'
 import { Button } from '../Buttons/Button'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { routes } from '../../routes/Routes'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Cookies from 'universal-cookie'
 
 type Props = {
     openLoginModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,8 +12,16 @@ type Props = {
 }
 
 export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
+
+    const cookies = new Cookies();
+
     const navigate = useNavigate()
     const location = useLocation()
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        cookies.get('jwt') ? setIsLoggedIn(true) : setIsLoggedIn(false)
+    }, [cookies])
 
     function NavigateButton() {
         return <>
@@ -25,21 +34,38 @@ export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
                 />
             ))
             }
-            <div className={styles.doubleCol}>
-                <Button
-                    key='login'
-                    title='Login'
-                    variation={2}
-                    onClick={() => openLoginModal(true)}
+
+            {!isLoggedIn ?
+                <div className={styles.doubleCol}>
+                    <Button
+                        key='login'
+                        title='Login'
+                        variation={2}
+                        onClick={() => openLoginModal(true)}
                     />
 
-                <Button
-                    key='Sign up'
-                    title='Sign up'
-                    variation={2}
-                    onClick={() => openSingUpModal(true)}
-                />
-            </div>
+                    <Button
+                        key='Sign up'
+                        title='Sign up'
+                        variation={2}
+                        onClick={() => openSingUpModal(true)}
+                    />
+                </div> : <div className={styles.doubleCol}>
+                    <Button
+                        key='Perfil'
+                        title='Perfil'
+                        variation={2}
+                        onClick={() => openLoginModal(true)}
+                    />
+
+                    <Button
+                        key='Sair'
+                        title='Sair'
+                        variation={2}
+                        onClick={() => openSingUpModal(true)}
+                    />
+                </div>
+            }
         </>
     }
 
