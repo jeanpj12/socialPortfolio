@@ -21,7 +21,9 @@ enum TypePost {
 model User {
   id        String    @id @default(uuid())
   name      String
+  surname   String    @map("last_name")
   email     String    @unique
+  status    String
   password  String
   role      UserRole  @default(costumer)
   createdAt DateTime  @default(now()) @map("created_at")

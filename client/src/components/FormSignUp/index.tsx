@@ -86,20 +86,20 @@ export function FormSignUp({ setLoading }: Props) {
     return <form>
 
         <div className={styles.doubleInputWrapper}>
-            <input type="text" placeholder='Nome' name='name' onChange={handleChangeData} />
-            <input type="text" placeholder='Sobrenome' name='surname' />
+            <input type="text" placeholder='Nome' name='name' min={3} onChange={handleChangeData} required/>
+            <input type="text" placeholder='Sobrenome' name='lastName' min={3} required onChange={handleChangeData}/>
         </div>
 
         <div className={styles.inputWrapper}>
-            <input type="text" placeholder='Cargo' name='cargo' />
+            <input type="text" placeholder='Cargo' name='status' required onChange={handleChangeData}/>
         </div>
 
         <div className={styles.inputWrapper}>
-            <input type="email" placeholder='Email' name='email' onChange={handleChangeData} />
+            <input type="email" placeholder='Email' name='email' onChange={handleChangeData} required/>
         </div>
 
         <div className={styles.inputWrapper}>
-            <input type="password" placeholder='Senha' name='password' onChange={handleChangeData} />
+            <input type="password" placeholder='Senha' name='password' onChange={handleChangeData} required/>
         </div>
 
         <div className={styles.errorWrapper}>

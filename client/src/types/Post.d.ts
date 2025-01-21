@@ -1,9 +1,9 @@
 export interface PostsProps {
     id: number
     user: userProps
-    publishedAt: string
+    createdAt: string
     content: string
-    image?: string
+    imageUrl?: string
     comments?: CommentProps[] | undefined
 }
 
@@ -11,14 +11,14 @@ type RepliesProps = {
     id: number
     user: userProps
     comment: string
-    publishedAt: string
+    createdAt: string
 }
 
 type CommentProps = {
     id: number
     user: userProps
     comment: string
-    publishedAt: string
+    createdAt: string
     replies?: RepliesProps[]
 }
 
