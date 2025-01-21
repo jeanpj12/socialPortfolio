@@ -17,6 +17,7 @@ class PostsController {
                 },
                 Like: {
                     select: {
+                        id: true,
                         userId: true,
                         createdAt: true
                     }
@@ -28,6 +29,7 @@ class PostsController {
                         createdAt: true,
                         Like: {
                             select: {
+                                id: true,
                                 userId: true,
                                 createdAt: true,
                             }

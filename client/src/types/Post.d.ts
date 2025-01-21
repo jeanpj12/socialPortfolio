@@ -1,25 +1,33 @@
 export interface PostsProps {
-    id: number
+    id: string
     user: userProps
     createdAt: string
     content: string
     imageUrl?: string
     comments?: CommentProps[] | undefined
+    Like: likeProps[]
+}
+
+type likeProps = {
+    id: string
+    userId: string
 }
 
 type RepliesProps = {
-    id: number
+    id: string
     user: userProps
     comment: string
     createdAt: string
+    Like: likeProps[]
 }
 
 type CommentProps = {
-    id: number
+    id: string
     user: userProps
     comment: string
     createdAt: string
     replies?: RepliesProps[]
+    Like: likeProps[]
 }
 
 type userProps = {

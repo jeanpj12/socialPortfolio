@@ -47,6 +47,34 @@ class LikeController {
         res.status(201).json(like)
 
     }
+
+    async delete(req: Request, res: Response) {
+
+        const bodySchema = z.object({
+            userId: z.string(),
+            likeId: z.string(),
+        })
+
+        const { likeId, userId } = bodySchema.parse(req.body)
+
+        const likeExist = await prisma.likes.findFirst({
+            where: {
+                id: likeId,
+                userId
+            }
+        })
+
+        if (!likeExist) throw new AppError('Like not found', 400)
+
+        await prisma.likes.delete({
+            where: {
+                id: likeId
+            }
+        })
+
+        res.json({message: 'Like deleted'})
+
+    }
 }
 
 export { LikeController }

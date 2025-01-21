@@ -26,7 +26,7 @@ export function CardPost({ posts }: contentProps) {
             <div className={styles.cardPost} key={post.id}>
                 <div className={styles.post}>
                     <header>
-                        <ProfileBadge name={post.user.name} status={post.user.status}/>
+                        <ProfileBadge name={post.user.name} status={post.user.status} />
                         <time dateTime={post.createdAt}>{dateFormat(post.createdAt)}</time>
                     </header>
                     <div className={styles.content}>
@@ -36,7 +36,7 @@ export function CardPost({ posts }: contentProps) {
                         {post.imageUrl && <img src={post.imageUrl} />}
                     </div>
                     <div className={styles.engagement}>
-                        <LikeButton />
+                        <LikeButton post={post} likeFrom="post"/>
                     </div>
                 </div>
                 {post.comments && post.comments.length > 0 && <Comment comments={post.comments} />}

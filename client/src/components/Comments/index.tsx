@@ -35,10 +35,10 @@ export function Comment({ comments }: CommentsProps) {
                         </span>
                     </div>
                     <div className={styles.engagement}>
-                        <LikeButton />
+                        <LikeButton likeFrom='comment' comment={comment}/>
                     </div>
                 </div>
-                <div className={styles.replies}>
+                {/* <div className={styles.replies}>
                     {comment.replies && comment.replies.map((reply) => (
                         <div className={styles.cardReply} key={reply.id}>
                             <header>
@@ -51,11 +51,11 @@ export function Comment({ comments }: CommentsProps) {
                                 </span>
                             </div>
                             <div className={styles.engagement}>
-                                <LikeButton />
+                                <LikeButton likeFrom='comment' comment={comment} post_id={comment.id}/>
                             </div>
                         </div>
                     ))}
-                </div>
+                </div> */}
             </div>
         ))
         }

@@ -7,5 +7,6 @@ const likeRoutes = Router()
 const likeController = new LikeController()
 
 likeRoutes.post('/', ensureAuthenticated, verifyUserAuthorization(['admin', 'costumer', 'guest']),likeController.create)
+likeRoutes.delete('/delete', ensureAuthenticated, verifyUserAuthorization(['admin', 'costumer', 'guest']),likeController.delete)
 
 export { likeRoutes }
