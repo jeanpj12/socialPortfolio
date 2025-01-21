@@ -47,7 +47,14 @@ export function FormLogin({ setLoading }: Props) {
                 }
             )
             if (loginResponse.status === 200) {
+
                 cookies.set('jwt', loginResponse.data.token, {
+                    path: '/',
+                    secure: true,
+                    sameSite: 'strict',
+                    maxAge: 86400
+                })
+                cookies.set('user_id', loginResponse.data.user.id, {
                     path: '/',
                     secure: true,
                     sameSite: 'strict',

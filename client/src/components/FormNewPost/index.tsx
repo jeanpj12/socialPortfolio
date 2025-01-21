@@ -2,15 +2,19 @@ import React, { useState } from 'react'
 import styles from './styles.module.css'
 import { Button } from '../Buttons/Button'
 import { ButtonEmoji } from './EmojiPicker'
-import { PostsProps } from '../../types/Post'
 import Cookies from 'universal-cookie'
 import { Alert } from '../Alert'
 import { Modal } from '../../modal'
 
 
 type postFormProps = React.ComponentProps<'textarea'> & {
-    onAddPost: (newPost: PostsProps) => void
+    onAddPost: (newPost: newPost) => void
     emojiButton?: boolean
+}
+
+export type newPost = {
+    user_id: string
+    content: string
 }
 
 export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postFormProps) {
@@ -38,15 +42,10 @@ export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postForm
         }
 
         const newPost = {
-            id: Math.floor(Math.random() * 1000),
-            user: {
-                name: 'Robson Silva.',
-                status: 'Empreendedor'
-            },
-            publishedAt: new Date().toISOString(),
-            content: text,
-            comments: []
+            user_id: cookies.get('user_id'),
+            content: text
         }
+
         onAddPost(newPost)
         setText('')
         setShowPicker(false)
