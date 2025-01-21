@@ -49,6 +49,7 @@ export function Feed() {
             setLoading(false)
         } catch (err) {
             console.error('Erro ao enviar post', err)
+            setLoading(false)
         }
     }
 

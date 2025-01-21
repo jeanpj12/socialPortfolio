@@ -5,6 +5,7 @@ export interface PostsProps {
     content: string
     imageUrl?: string
     comments?: CommentProps[] | undefined
+    typePost: string
     Like: likeProps[]
 }
 

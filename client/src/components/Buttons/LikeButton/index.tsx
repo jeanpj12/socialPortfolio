@@ -86,14 +86,20 @@ export function LikeButton({ comment, post, likeFrom, ...rest }: ButtonProps) {
         }
     }
 
-    return <button
-        {...rest}
-        className={`
+    return <div className={styles.likeContainer}>
+        <span className={styles.likeCount}>
+            {likeFrom === 'post' ? post?.Like?.length : comment?.Like?.length}
+        </span>
+        <button
+            {...rest}
+            className={`
         ${styles.button}
         ${like ? styles.liked : ''}
         `}
-        onClick={handleLike}>
-        <div className={styles.like}></div>
-        curtir
-    </button>
+            onClick={handleLike}>
+            <div className={styles.like}></div>
+            curtir
+        </button>
+    </div>
+
 }
