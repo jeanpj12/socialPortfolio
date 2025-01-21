@@ -3,8 +3,14 @@ import { Button } from '../Buttons/Button'
 import { useState } from 'react'
 import { API } from '../../services/APIService'
 import Cookies from 'universal-cookie';
+import { AxiosError } from 'axios';
 
-export function FormSignUp() {
+
+type Props = {
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function FormSignUp({ setLoading }: Props) {
 
     const cookies = new Cookies();
 
@@ -13,6 +19,8 @@ export function FormSignUp() {
         email: '',
         password: '',
     })
+
+    const [error, setError] = useState('')
 
     const handleChangeData = (e: any) => {
         const { name, value } = e.target
@@ -25,7 +33,7 @@ export function FormSignUp() {
     const handleSubmit = async (e: any) => {
 
         e.preventDefault()
-
+        setLoading(true)
         try {
             const createResponse = await API.post(
                 '/user/create',
@@ -58,7 +66,7 @@ export function FormSignUp() {
                         maxAge: 86400
                     })
 
-                    window.location.href = '/portfolio'
+                    window.location.href = '/'
                 } else {
                     console.error('Falha ao realizar login', loginResponse.data)
                 }
@@ -66,7 +74,12 @@ export function FormSignUp() {
                 console.error('Erro ao criar conta:', createResponse.data);
             }
         } catch (err) {
-            console.log(err)
+            setLoading(false)
+            if (err instanceof AxiosError) {
+                setError(err.response?.data.message)
+            } else {
+                setError('An unknown error occurred')
+            }
         }
     }
 
@@ -87,6 +100,10 @@ export function FormSignUp() {
 
         <div className={styles.inputWrapper}>
             <input type="password" placeholder='Senha' name='password' onChange={handleChangeData} />
+        </div>
+
+        <div className={styles.errorWrapper}>
+            {error && <span>{error}</span>}
         </div>
 
         <Button title='Sign Up' variation={2} onClick={handleSubmit} />

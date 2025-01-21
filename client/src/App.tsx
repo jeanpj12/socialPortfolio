@@ -21,7 +21,7 @@ function App() {
                 loginModal && <Modal
                     title='Login'
                     closeModal={setLoginModal}>
-                    <FormLogin setLoading={setLoading}/>
+                    <FormLogin setLoading={setLoading} />
                 </Modal>
             }
 
@@ -29,7 +29,7 @@ function App() {
                 signUpModal && <Modal
                     title='Login'
                     closeModal={setSignUpModal}>
-                    <FormSignUp />
+                    <FormSignUp setLoading={setLoading}/>
                 </Modal>
             }
 
