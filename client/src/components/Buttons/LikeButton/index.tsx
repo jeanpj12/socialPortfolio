@@ -19,9 +19,6 @@ export function LikeButton({ comment, post, likeFrom, ...rest }: ButtonProps) {
     const commentLikeObject = comment?.Like?.find((user) => user.userId === user_id)
     const [like, setLike] = useState<boolean>(Boolean(postLikeObject || commentLikeObject))
 
-    console.log(postLikeObject)
-    console.log(commentLikeObject)
-
     async function handleLike() {
         const likeBodyDelete = likeFrom === 'post'
             ? {
