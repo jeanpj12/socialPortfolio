@@ -13,6 +13,13 @@ form {
         gap: .75rem;
     }
 
+    .errorWrapper{
+        span {
+            font-size: .75rem;
+            margin-left: .75rem;
+        }
+    }
+
     input, textarea {
         width: 100%;
         background-color: var(--bg-color-primary);

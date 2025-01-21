@@ -6,19 +6,22 @@ import { Modal } from './modal'
 import { useState } from 'react'
 import { FormLogin } from './components/FormLogin'
 import { FormSignUp } from './components/FormSignUp'
+import { Loading } from './components/Loading'
 
 function App() {
 
     const [loginModal, setLoginModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     return (
         <div>
+            {loading && <Loading />}
             {
                 loginModal && <Modal
                     title='Login'
                     closeModal={setLoginModal}>
-                    <FormLogin />
+                    <FormLogin setLoading={setLoading}/>
                 </Modal>
             }
 
@@ -35,6 +38,7 @@ function App() {
                     <SideProfile
                         openLoginModal={setLoginModal}
                         openSingUpModal={setSignUpModal}
+                        setLoading={setLoading}
                     />
                     <div className={styles.content}>
                         <Routes>

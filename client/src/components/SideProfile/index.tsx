@@ -9,10 +9,10 @@ import Cookies from 'universal-cookie'
 type Props = {
     openLoginModal: React.Dispatch<React.SetStateAction<boolean>>
     openSingUpModal: React.Dispatch<React.SetStateAction<boolean>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
-
+export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Props) {
     const cookies = new Cookies();
 
     const navigate = useNavigate()
@@ -25,9 +25,11 @@ export function SideProfile({ openLoginModal, openSingUpModal }: Props) {
 
     const handleLogout = () => {
         cookies.remove('jwt')
+        setLoading(true)
         window.location.href = '/'
     }
 
+    
     function NavigateButton() {
         return <>
             {routes.map((route) => (

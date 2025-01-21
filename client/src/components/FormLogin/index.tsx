@@ -3,8 +3,13 @@ import { Button } from '../Buttons/Button'
 import { API } from '../../services/APIService'
 import Cookies from 'universal-cookie'
 import { useState } from 'react';
+import { AxiosError } from 'axios';
 
-export function FormLogin() {
+type Props = {
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export function FormLogin({ setLoading }: Props) {
 
     const cookies = new Cookies();
 
@@ -13,6 +18,7 @@ export function FormLogin() {
         password: '',
     })
 
+
     const handleChangeData = (e: any) => {
         const { name, value } = e.target
         setFormData((prevData) => ({
@@ -20,10 +26,12 @@ export function FormLogin() {
             [name]: value
         }))
     }
+    const [error, setError] = useState('')
 
     const handleSubmit = async (e: any) => {
 
         e.preventDefault()
+        setLoading(true)
 
         try {
             const loginResponse = await API.post(
@@ -51,21 +59,32 @@ export function FormLogin() {
                 console.error('Falha ao realizar login', loginResponse.data)
             }
         } catch (err) {
-            console.log(err)
+            setLoading(false)
+            if (err instanceof AxiosError) {
+                setError(err.response?.data.message)
+            } else {
+                setError('An unknown error occurred')
+            }
         }
     }
 
-    return <form>
+    return <>
+        <form>
 
-        <div className={styles.inputWrapper}>
-            <input type="email" placeholder='Email' name='email' onChange={handleChangeData}/>
-        </div>
+            <div className={styles.inputWrapper}>
+                <input type="email" placeholder='Email' name='email' onChange={handleChangeData} />
+            </div>
 
-        <div className={styles.inputWrapper}>
-            <input type="password" placeholder='Senha' name='password' onChange={handleChangeData}/>
-        </div>
+            <div className={styles.inputWrapper}>
+                <input type="password" placeholder='Senha' name='password' onChange={handleChangeData} />
+            </div>
 
-        <Button title='Login' variation={2} onClick={handleSubmit}/>
+            <div className={styles.errorWrapper}>
+                {error && <span>{error}</span>}
+            </div>
 
-    </form>
+            <Button title='Login' variation={2} onClick={handleSubmit} />
+
+        </form>
+    </>
 }
