@@ -5,6 +5,7 @@ import { API } from '../../services/APIService'
 import { AxiosError } from 'axios';
 import { LoginService } from '../../services/LoginService';
 import { useUser } from '../../contexts/UserContext';
+import { InputAvatar } from '../inputAvatar';
 
 type Props = {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,11 +15,14 @@ export function FormSignUp({ setLoading }: Props) {
     const { setUser } = useUser()
     const [formData, setFormData] = useState({
         name: '',
+        lastName: '',
+        status: '',
         email: '',
         password: '',
     })
 
     const [error, setError] = useState('')
+    const [avatar, setAvatar] = useState<File | null>(null)
 
     const handleChangeData = (e: any) => {
         const { name, value } = e.target
@@ -32,15 +36,21 @@ export function FormSignUp({ setLoading }: Props) {
 
         e.preventDefault()
         setLoading(true)
+
+        const formDataToSend = new FormData()
+        formDataToSend.append('name', formData.name)
+        formDataToSend.append('lastName', formData.lastName)
+        formDataToSend.append('status', formData.status)
+        formDataToSend.append('email', formData.email)
+        formDataToSend.append('password', formData.password)
+
+        if (avatar) {
+            formDataToSend.append('avatar', avatar) // Adiciona o arquivo
+        }
         try {
             const createResponse = await API.post(
                 '/user/create',
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
+                formDataToSend
             )
 
             if (createResponse.status === 201) {
@@ -70,6 +80,9 @@ export function FormSignUp({ setLoading }: Props) {
 
     return <form>
 
+        <div className={styles.avatarWrapper}>
+            <InputAvatar onFileSelected={(file) => setAvatar(file)} />
+        </div>
         <div className={styles.doubleInputWrapper}>
             <input type="text" placeholder='Nome' name='name' min={3} onChange={handleChangeData} required />
             <input type="text" placeholder='Sobrenome' name='lastName' min={3} required onChange={handleChangeData} />

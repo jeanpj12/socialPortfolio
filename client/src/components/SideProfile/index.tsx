@@ -32,7 +32,6 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
         window.location.href = '/'
     }
 
-
     function NavigateButton() {
         return <>
             {routes.map((route) => (
@@ -79,9 +78,11 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
         </>
     }
 
+    const avatar = process.env.BACKEND_URL + '/upload/' + user?.avatar
+
     return <div className={styles.sideBar}>
             <div className={styles.profileContainer}>
-                <ProfileBadge name={`${user?.name} ${user?.surname}` || 'Jean Jr.'} status={user?.status || 'Developer'} img='https://github.com/jeanpj12.png' />
+                <ProfileBadge img={avatar} name={`${user?.name} ${user?.surname}` || 'Jean Jr.'} status={user?.status || 'Developer'} />
             </div>
             <div className={styles.buttonsPage}>
                 <NavigateButton />

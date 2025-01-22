@@ -4,6 +4,7 @@ import { sessionRoutes } from "./sessionRoutes";
 import { postRoutes } from "./postRoutes";
 import { commentRoutes } from "./commentRoutes";
 import { likeRoutes } from "./likeRoutes";
+import { uploadRoutes } from "./uploadRoutes";
 
 const routes = Router()
 
@@ -12,5 +13,6 @@ routes.use('/session', sessionRoutes)
 routes.use('/post', postRoutes)
 routes.use('/comment', commentRoutes)
 routes.use('/like', likeRoutes)
+routes.use('/upload', uploadRoutes)
 
 export { routes }

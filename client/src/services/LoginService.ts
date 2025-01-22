@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { API } from "./APIService";
 import Cookies from "universal-cookie";
 
@@ -32,8 +32,10 @@ export const LoginService = async (email: string, password: string) => {
                 sameSite: 'strict',
                 maxAge: 86400
             })
-
-            return loginResponse.data.user
+            return {
+                ...loginResponse.data.user,
+                avatar: loginResponse.data.user.avatar.split('/').pop()
+            }
 
         } else {
             throw new Error('Falha ao realizar login')

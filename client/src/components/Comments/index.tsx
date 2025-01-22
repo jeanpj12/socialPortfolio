@@ -21,12 +21,21 @@ export function Comment({ comments }: CommentsProps) {
         })
     }
 
+    const avatar = (comment: CommentProps) => {
+        if (comment.user.avatar) {
+            return process.env.BACKEND_URL + '/upload/' + comment.user.avatar.split('/').pop()
+        }
+
+        return undefined
+    }
+
+
     return <div className={styles.comments}>
         {comments && comments.map((comment) => (
             <div className={styles.comment} key={comment.id}>
                 <div className={styles.cardComment} key={comment.id}>
                     <header>
-                        <ProfileBadge name={`${comment.user?.name} ${comment.user?.surname}`} status={comment.user.status}/>
+                        <ProfileBadge img={avatar(comment)} name={`${comment.user?.name} ${comment.user?.surname}`} status={comment.user.status} />
                         <time dateTime={comment.createdAt}>{dateFormat(comment.createdAt)}</time>
                     </header>
                     <div>
@@ -35,7 +44,7 @@ export function Comment({ comments }: CommentsProps) {
                         </span>
                     </div>
                     <div className={styles.engagement}>
-                        <LikeButton likeFrom='comment' comment={comment}/>
+                        <LikeButton likeFrom='comment' comment={comment} />
                     </div>
                 </div>
                 {/* <div className={styles.replies}>

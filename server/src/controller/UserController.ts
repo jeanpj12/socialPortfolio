@@ -17,6 +17,8 @@ class UserController {
 
         const { name, email, password, status, lastName } = bodySchema.parse(req.body)
 
+        const avatar = req.file?.path
+
         const userWithSameEmail = await prisma.user.findUnique({ where: { email } })
 
         if (userWithSameEmail) {
@@ -27,6 +29,7 @@ class UserController {
 
         const user = await prisma.user.create({
             data: {
+                avatar,
                 name,
                 surname: lastName,
                 email,

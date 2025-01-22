@@ -10,6 +10,7 @@ class PostsController {
             include: {
                 user: {
                     select: {
+                        avatar: true,
                         name: true,
                         surname: true,
                         status: true,
@@ -37,6 +38,7 @@ class PostsController {
                         },
                         user: {
                             select: {
+                                avatar: true,
                                 name: true,
                                 surname: true,
                                 id: true,
