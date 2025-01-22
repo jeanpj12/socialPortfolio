@@ -1,9 +1,9 @@
 import styles from './styles.module.css'
 import { Button } from '../Buttons/Button'
-import { API } from '../../services/APIService'
-import Cookies from 'universal-cookie'
 import { useState } from 'react';
 import { AxiosError } from 'axios';
+import { useUser } from '../../contexts/UserContext';
+import { LoginService } from '../../services/LoginService';
 
 type Props = {
     setLoading: React.Dispatch<React.SetStateAction<boolean>>
@@ -11,7 +11,8 @@ type Props = {
 
 export function FormLogin({ setLoading }: Props) {
 
-    const cookies = new Cookies();
+    const { setUser } = useUser()
+
 
     const [formData, setFormData] = useState({
         email: '',
@@ -34,44 +35,17 @@ export function FormLogin({ setLoading }: Props) {
         setLoading(true)
 
         try {
-            const loginResponse = await API.post(
-                '/session',
-                {
-                    email: formData.email,
-                    password: formData.password
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }
-            )
-            if (loginResponse.status === 200) {
-
-                cookies.set('jwt', loginResponse.data.token, {
-                    path: '/',
-                    secure: true,
-                    sameSite: 'strict',
-                    maxAge: 86400
-                })
-                cookies.set('user_id', loginResponse.data.user.id, {
-                    path: '/',
-                    secure: true,
-                    sameSite: 'strict',
-                    maxAge: 86400
-                })
-
-                window.location.href = '/'
-            } else {
-                console.error('Falha ao realizar login', loginResponse.data)
-            }
+            const user = await LoginService(formData.email, formData.password)
+            setUser(user)
+            window.location.href = '/'
         } catch (err) {
-            setLoading(false)
-            if (err instanceof AxiosError) {
-                setError(err.response?.data.message)
+            const axiosError = err as AxiosError;
+            if (axiosError.response?.status && axiosError.message) {
+                setError(axiosError.message);
             } else {
                 setError('An unknown error occurred')
             }
+            setLoading(false);
         }
     }
 

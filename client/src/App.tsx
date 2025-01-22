@@ -17,21 +17,21 @@ function App() {
     return (
         <div>
             {loading && <Loading />}
-            {
-                loginModal && <Modal
-                    title='Login'
-                    closeModal={setLoginModal}>
-                    <FormLogin setLoading={setLoading} />
-                </Modal>
-            }
+                {
+                    loginModal && <Modal
+                        title='Login'
+                        closeModal={setLoginModal}>
+                        <FormLogin setLoading={setLoading} />
+                    </Modal>
+                }
 
-            {
-                signUpModal && <Modal
-                    title='Login'
-                    closeModal={setSignUpModal}>
-                    <FormSignUp setLoading={setLoading}/>
-                </Modal>
-            }
+                {
+                    signUpModal && <Modal
+                        title='Login'
+                        closeModal={setSignUpModal}>
+                        <FormSignUp setLoading={setLoading} />
+                    </Modal>
+                }
 
             <div className={styles.container}>
                 <Router>

@@ -11,6 +11,7 @@ class PostsController {
                 user: {
                     select: {
                         name: true,
+                        surname: true,
                         status: true,
                         id: true
                     }
@@ -37,6 +38,7 @@ class PostsController {
                         user: {
                             select: {
                                 name: true,
+                                surname: true,
                                 id: true,
                                 status: true,
                             }

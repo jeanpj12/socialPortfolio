@@ -33,5 +33,6 @@ type CommentProps = {
 
 type userProps = {
     name: string
+    surname: string
     status: string
 }

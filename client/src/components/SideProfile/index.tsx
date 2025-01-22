@@ -5,6 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { routes } from '../../routes/Routes'
 import React, { useEffect, useState } from 'react'
 import Cookies from 'universal-cookie'
+import { useUser } from '../../contexts/UserContext';
+
 
 type Props = {
     openLoginModal: React.Dispatch<React.SetStateAction<boolean>>
@@ -14,7 +16,7 @@ type Props = {
 
 export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Props) {
     const cookies = new Cookies();
-
+    const { logout, user } = useUser()
     const navigate = useNavigate()
     const location = useLocation()
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,11 +27,12 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
 
     const handleLogout = () => {
         cookies.remove('jwt')
+        logout()
         setLoading(true)
         window.location.href = '/'
     }
 
-    
+
     function NavigateButton() {
         return <>
             {routes.map((route) => (
@@ -77,11 +80,11 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
     }
 
     return <div className={styles.sideBar}>
-        <div className={styles.profileContainer}>
-            <ProfileBadge name='Jean Jr.' status='Developer' img='https://github.com/jeanpj12.png' />
+            <div className={styles.profileContainer}>
+                <ProfileBadge name={`${user?.name} ${user?.surname}` || 'Jean Jr.'} status={user?.status || 'Developer'} img='https://github.com/jeanpj12.png' />
+            </div>
+            <div className={styles.buttonsPage}>
+                <NavigateButton />
+            </div>
         </div>
-        <div className={styles.buttonsPage}>
-            <NavigateButton />
-        </div>
-    </div>
 }
