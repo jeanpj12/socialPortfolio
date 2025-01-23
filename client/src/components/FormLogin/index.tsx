@@ -1,7 +1,7 @@
 import styles from './styles.module.css'
 import { Button } from '../Buttons/Button'
 import { useState } from 'react';
-import { AxiosError } from 'axios';
+import { AxiosError} from 'axios';
 import { useUser } from '../../contexts/UserContext';
 import { LoginService } from '../../services/LoginService';
 
@@ -35,16 +35,16 @@ export function FormLogin({ setLoading }: Props) {
         setLoading(true)
 
         try {
-            const user = await LoginService(formData.email, formData.password)
+            const user = await LoginService({ email: formData.email, password: formData.password })
             setUser(user)
             window.location.href = '/'
         } catch (err) {
-            const axiosError = err as AxiosError;
-            if (axiosError.response?.status && axiosError.message) {
-                setError(axiosError.message);
-            } else {
-                setError('An unknown error occurred')
-            }
+            const errorMessage =
+                (err as AxiosError).message ||
+                ((err as AxiosError<{ message: string }>).response?.data?.message) ||
+                'An unknown error occurred'
+
+            setError(errorMessage);
             setLoading(false);
         }
     }

@@ -1,8 +1,14 @@
 import axios from "axios";
 import { API } from "./APIService";
 import Cookies from "universal-cookie";
+import React from "react";
 
-export const LoginService = async (email: string, password: string) => {
+type LoginProps = {
+    email: string,
+    password: string,
+}
+
+export const LoginService = async ({ email, password }: LoginProps) => {
 
     const cookies = new Cookies();
     try {
@@ -36,9 +42,6 @@ export const LoginService = async (email: string, password: string) => {
                 ...loginResponse.data.user,
                 avatar: loginResponse.data.user.avatar.split('/').pop()
             }
-
-        } else {
-            throw new Error('Falha ao realizar login')
         }
     } catch (error: unknown) {
         if (axios.isAxiosError(error) && error.response) {

@@ -55,7 +55,7 @@ export function FormSignUp({ setLoading }: Props) {
 
             if (createResponse.status === 201) {
                 try {
-                    const user = await LoginService(formData.email, formData.password)
+                    const user = await LoginService({ email: formData.email, password: formData.password })
                     setUser(user)
                     window.location.href = '/'
                 } catch (err) {
@@ -69,12 +69,13 @@ export function FormSignUp({ setLoading }: Props) {
                 }
             }
         } catch (err) {
-            setLoading(false)
-            if (err instanceof AxiosError) {
-                setError(err.response?.data.message)
-            } else {
-                setError('An unknown error occurred')
-            }
+            const errorMessage =
+                (err as AxiosError).message ||
+                ((err as AxiosError<{ message: string }>).response?.data?.message) ||
+                'An unknown error occurred'
+
+            setError(errorMessage);
+            setLoading(false);
         }
     }
 
