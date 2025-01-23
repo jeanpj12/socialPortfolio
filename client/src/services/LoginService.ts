@@ -1,7 +1,6 @@
 import axios from "axios";
 import { API } from "./APIService";
 import Cookies from "universal-cookie";
-import React from "react";
 
 type LoginProps = {
     email: string,
