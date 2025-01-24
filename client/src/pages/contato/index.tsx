@@ -38,11 +38,12 @@ export function Contact() {
             <div className={styles.profile}>
                 <ProfileBadge name='Jean Jr.' status='Developer' img='https://github.com/jeanpj12.png' />
             </div>
-            {social.map((social) => (
+            {social.map((social, index) => (
                 <SocialContact
                     img={social.img}
                     content={social.content}
                     url={social.url}
+                    key={index}
                 />
             )
             )}

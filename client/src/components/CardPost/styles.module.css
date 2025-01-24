@@ -46,3 +46,11 @@
         }
     }
 }
+
+@media ( max-width: 37.5em) {
+    time {
+        width: 30%;
+        font-size: .5rem;
+        text-align: right;
+    }
+}

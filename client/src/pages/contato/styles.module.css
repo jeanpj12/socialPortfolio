@@ -19,3 +19,9 @@
     }
 
 }
+
+@media ( max-width: 37.5em) {
+    .container {
+        flex-direction: column;
+    }
+}
