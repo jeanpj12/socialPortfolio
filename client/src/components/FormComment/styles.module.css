@@ -1,5 +1,5 @@
 .commentWrapper {
-    overflow: hidden;
+    /* overflow: hidden; */
     transform: scaleY(0);
     transform-origin: top;
     height: 0;
@@ -38,7 +38,7 @@
 }
 
 .active {
-    padding: 2rem 1rem;
+    /* padding: 2rem 1rem; */
     transform: scaleY(1);
     height: 100%;
     transition: all .5s ease-in-out;

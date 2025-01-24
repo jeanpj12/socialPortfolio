@@ -17,7 +17,7 @@
         letter-spacing: .1rem;
         cursor: pointer;
         text-align: left;
-        padding-inline: .75rem;
+        padding-inline: .5rem;
         transition: filter 200ms;
         display: flex;
         gap: .5rem;

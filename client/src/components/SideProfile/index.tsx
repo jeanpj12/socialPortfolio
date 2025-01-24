@@ -81,9 +81,11 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
     const avatar = process.env.BACKEND_URL + '/upload/' + user?.avatar
 
     return <div className={styles.sideBar}>
+        { isLoggedIn &&
             <div className={styles.profileContainer}>
                 <ProfileBadge img={avatar} name={`${user?.name} ${user?.surname}` || 'Jean Jr.'} status={user?.status || 'Developer'} />
             </div>
+            }
             <div className={styles.buttonsPage}>
                 <NavigateButton />
             </div>

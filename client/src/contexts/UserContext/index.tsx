@@ -7,6 +7,7 @@ interface User {
     email: string;
     status: string;
     avatar: string;
+    role: string;
 }
 
 interface UserContextType {

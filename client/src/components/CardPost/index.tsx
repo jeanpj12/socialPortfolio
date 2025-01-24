@@ -1,17 +1,24 @@
 import styles from './styles.module.css'
 import { ProfileBadge } from '../ProfleBadge'
 import { LikeButton } from '../Buttons/LikeButton';
-
+import { CommentButton } from '../Buttons/CommentButton';
+import { FormComment } from '../FormComment';
 import { Comment } from '../Comments';
 import { PostsProps } from '../../types/Post';
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
+import { useState } from 'react';
+import { useUser } from '../../contexts/UserContext';
 
 type contentProps = {
     posts: PostsProps[]
 }
 
 export function CardPost({ posts }: contentProps) {
+
+    const { user } = useUser()
+
+    const [showCommnet, setShowComment] = useState(false)
 
     function dateFormat(date: string) {
         const dateTimeConvert = new Date(date)
@@ -45,7 +52,9 @@ export function CardPost({ posts }: contentProps) {
                     </div>
                     <div className={styles.engagement}>
                         <LikeButton post={post} likeFrom="post" />
+                        {user?.role === 'admin' && <CommentButton onClick={() => setShowComment((prev) => !prev)}/>}
                     </div>
+                    {showCommnet && <FormComment />}
                 </div>
                 {post.comments && post.comments.length > 0 && <Comment comments={post.comments} />}
             </div>
