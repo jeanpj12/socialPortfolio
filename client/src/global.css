@@ -19,9 +19,6 @@ body {
     color: var(--text-color-primary);
     padding-inline: 1rem;
 
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
     padding-top: 2.5rem;
     -webkit-font-smoothing: antialiased;
 }
