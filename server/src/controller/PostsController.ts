@@ -24,29 +24,29 @@ class PostsController {
                         createdAt: true
                     }
                 },
-                comments: {
-                    select: {
-                        comment: true,
-                        id: true,
-                        createdAt: true,
-                        Like: {
-                            select: {
-                                id: true,
-                                userId: true,
-                                createdAt: true,
-                            }
-                        },
-                        user: {
-                            select: {
-                                avatar: true,
-                                name: true,
-                                surname: true,
-                                id: true,
-                                status: true,
-                            }
-                        }
-                    }
-                }
+                // comments: {
+                //     select: {
+                //         comment: true,
+                //         id: true,
+                //         createdAt: true,
+                //         Like: {
+                //             select: {
+                //                 id: true,
+                //                 userId: true,
+                //                 createdAt: true,
+                //             }
+                //         },
+                //         user: {
+                //             select: {
+                //                 avatar: true,
+                //                 name: true,
+                //                 surname: true,
+                //                 id: true,
+                //                 status: true,
+                //             }
+                //         }
+                //     }
+                // }
             }
         }
         )

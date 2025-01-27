@@ -7,5 +7,6 @@ const commentRoutes = Router()
 const commentController = new CommentController()
 
 commentRoutes.post('/', ensureAuthenticated, verifyUserAuthorization(['admin']),commentController.create)
+commentRoutes.get('/:post_id',commentController.index)
 
 export { commentRoutes }

@@ -32,6 +32,33 @@ class CommentController {
         res.status(201).json(commentContent)
 
     }
+
+    async index(req: Request, res: Response) {
+
+        const paramSchema = z.object({
+            post_id: z.string()
+        })
+
+        const { post_id } = paramSchema.parse(req.params)
+
+        const postExist = await prisma.post.findFirst({ where: { id: post_id } })
+
+        if (!postExist) {
+            throw new AppError('Post not found.', 404)
+        }
+
+        const commentContent = await prisma.comments.findMany({
+            where: {
+                postId: post_id
+            },
+            include: {
+                user: true
+            }
+        })
+
+        res.status(201).json(commentContent)
+
+    }
 }
 
 export { CommentController }

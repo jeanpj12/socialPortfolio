@@ -57,7 +57,9 @@ export function Feed() {
         <div className={styles.container}>
             {loading && <Loading />}
             <FormNewPost placeholder='Publique alguma dúvida ou depoimento...' onAddPost={handleSendPost} />
-            <CardPost posts={posts} />
+            {posts.map((post) => (
+                <CardPost post={post} key={post.id} />
+            ))}
         </div>
     )
 }

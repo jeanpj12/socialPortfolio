@@ -4,21 +4,24 @@ import { LikeButton } from '../Buttons/LikeButton';
 import { CommentButton } from '../Buttons/CommentButton';
 import { FormComment } from '../FormComment';
 import { Comment } from '../Comments';
-import { PostsProps } from '../../types/Post';
+import { CommentProps, PostsProps } from '../../types/Post';
 import { formatDistanceToNow } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useUser } from '../../contexts/UserContext';
+import { API } from '../../services/APIService';
 
 type contentProps = {
-    posts: PostsProps[]
+    post: PostsProps
 }
 
-export function CardPost({ posts }: contentProps) {
+export function CardPost({ post }: contentProps) {
 
     const { user } = useUser()
 
     const [showCommnet, setShowComment] = useState(false)
+    const [comments, setComments] = useState<CommentProps[]>()
+    const [reloadComments, setReloadComments] = useState(false)
 
     function dateFormat(date: string) {
         const dateTimeConvert = new Date(date)
@@ -36,27 +39,54 @@ export function CardPost({ posts }: contentProps) {
         return undefined
     }
 
+    const getComments = async () => {
+        try {
+            const response = await API.get(`/comment/${post.id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+            setComments(response.data)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    useEffect(() => {
+        getComments()
+        setReloadComments(false)
+    }, [reloadComments])
+
+    useEffect(() => {
+        getComments()
+    }, [post])
+
     return (
-        posts.map((post) => (
-            <div className={styles.cardPost} key={post.id}>
-                <div className={styles.post}>
-                    <header>
-                        <ProfileBadge img={avatar(post)} name={`${post.user?.name} ${post.user?.surname}`} status={post.user.status} />
-                        <time dateTime={post.createdAt}>{dateFormat(post.createdAt)}</time>
-                    </header>
-                    <div className={styles.content}>
-                        <span>
-                            {post.content}
-                        </span>
-                        {post.imageUrl && <img src={post.imageUrl} />}
-                    </div>
-                    <div className={styles.engagement}>
-                        <LikeButton post={post} likeFrom="post" />
-                        {user?.role === 'admin' && <CommentButton onClick={() => setShowComment((prev) => !prev)}/>}
-                    </div>
-                    {showCommnet && <FormComment />}
+        <div className={styles.cardPost} key={post.id}>
+            <div className={styles.post}>
+                <header>
+                    <ProfileBadge img={avatar(post)} name={`${post.user?.name} ${post.user?.surname}`} status={post.user.status} />
+                    <time dateTime={post.createdAt}>{dateFormat(post.createdAt)}</time>
+                </header>
+                <div className={styles.content}>
+                    <span>
+                        {post.content}
+                    </span>
+                    {post.imageUrl && <img src={post.imageUrl} />}
                 </div>
-                {post.comments && post.comments.length > 0 && <Comment comments={post.comments} />}
+                <div className={styles.engagement}>
+                    <LikeButton post={post} likeFrom="post" />
+                    {user?.role === 'admin' && <CommentButton onClick={() => setShowComment((prev) => !prev)} />}
+                </div>
+                {showCommnet && <FormComment post_id={post.id} setReloadComments={setReloadComments} setShowComments={setShowComment} />}
             </div>
-        )))
+            {comments?.map((comment) =>
+            (
+                <Comment comment={comment} key={comment.id} />
+            )
+            )
+            }
+        </div>
+    )
 }
