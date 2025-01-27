@@ -32,7 +32,7 @@ export function FormComment({ active = true, reply = false, post_id, setReloadCo
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await API.post('/comment',
+            await API.post('/comment',
                 {
                     user_id: user?.id,
                     post_id,

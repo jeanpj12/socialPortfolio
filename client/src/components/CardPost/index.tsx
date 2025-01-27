@@ -79,7 +79,7 @@ export function CardPost({ post }: contentProps) {
                     <LikeButton post={post} likeFrom="post" />
                     {user?.role === 'admin' && <CommentButton onClick={() => setShowComment((prev) => !prev)} />}
                 </div>
-                {showCommnet && <FormComment post_id={post.id} setReloadComments={setReloadComments} setShowComments={setShowComment} />}
+                {showCommnet && <FormComment post_id={post.id} setReloadComments={setReloadComments} setShowComments={setShowComment}/>}
             </div>
             {comments?.map((comment) =>
             (
