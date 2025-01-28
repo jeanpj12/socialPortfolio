@@ -48,6 +48,6 @@ export function Contact() {
             )
             )}
         </div>
-        <FormContact />
+        {/* <FormContact /> */}
     </div>
 }
