@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --env-file .env src/server.ts"
+    "dev": "tsx watch --env-file .env src/server.ts",
+    "build": "tsup src --out-dir build",
+    "start": "node build/server.js"
   },
   "dependencies": {
     "@prisma/client": "^6.2.1",
@@ -22,6 +24,8 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/multer": "^1.4.12",
-    "tsx": "^4.19.2"
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   }
 }
