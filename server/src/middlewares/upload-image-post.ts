@@ -5,8 +5,8 @@ import fs from 'fs';
 
 const uploadDir = path.resolve(__dirname, '..', '..', 'uploads', 'image-post');
 
-if(!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir, {recursive: true});
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
 }
 
 const storage = multer.diskStorage({
@@ -20,13 +20,13 @@ const storage = multer.diskStorage({
 })
 
 const fileFilter = (req: any, file: any, cb: any) => {
-    if(file.mimetype.startsWith('image/')) {
+    if (file.mimetype.startsWith('image/')) {
         cb(null, true);
     } else {
         cb(new AppError('File is not an image', 400), false);
     }
 }
 
-const uploadImagePost = multer({storage, fileFilter});
+const uploadImagePost = multer({ storage, fileFilter });
 
 export { uploadImagePost };
