@@ -78,7 +78,7 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
         </>
     }
 
-    const avatar = process.env.BACKEND_URL + '/upload/' + user?.avatar
+    const avatar = process.env.BACKEND_URL + '/uploads/avatar/' + user?.avatar
 
     return <div className={styles.sideBar}>
         { isLoggedIn &&

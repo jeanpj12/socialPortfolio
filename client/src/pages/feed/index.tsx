@@ -1,5 +1,5 @@
 import styles from './styles.module.css'
-import { FormNewPost, newPost } from '../../components/FormNewPost'
+import { FormNewPost } from '../../components/FormNewPost'
 import { CardPost } from '../../components/CardPost'
 import { PostsProps } from '../../types/Post'
 import { useEffect, useState } from 'react'
@@ -34,17 +34,19 @@ export function Feed() {
         getPosts()
     }, [])
 
-    const handleSendPost = async (newPost: newPost) => {
+    const handleSendPost = async (newPost: FormData) => {
         setLoading(true)
         try {
-            await API.post(
+            const response = await API.post(
                 '/post/new',
-                newPost,
-                {
+                newPost, {
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                        'Content-Type':'multipart/form-data'
+                    }	
+                }
+            )
+            
+            console.log(response)
             getPosts()
             setLoading(false)
         } catch (err) {

@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { UserController } from "@/controller/UserController";
-import { upload } from "@/middlewares/upload-images";
+import { uploadAvatar } from "@/middlewares/upload-avatar";
 
 const userRoutes = Router()
 const userController = new UserController()
 
-userRoutes.post('/create', upload.single("avatar"), userController.create)
+userRoutes.post('/create', uploadAvatar.single("avatar"), userController.create)
 
 export { userRoutes }

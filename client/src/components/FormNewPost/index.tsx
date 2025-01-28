@@ -1,33 +1,44 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styles from './styles.module.css'
 import { Button } from '../Buttons/Button'
 import { ButtonEmoji } from './EmojiPicker'
 import Cookies from 'universal-cookie'
 import { Alert } from '../Alert'
 import { Modal } from '../../modal'
-
+import ImageIcon from '../../assets/svg/foto.svg'
+import { useUser } from '../../contexts/UserContext'
 
 type postFormProps = React.ComponentProps<'textarea'> & {
-    onAddPost: (newPost: newPost) => void
+    onAddPost: (newPost: FormData) => void
     emojiButton?: boolean
 }
-
-export type newPost = {
-    user_id: string
-    content: string
-}
-
 export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postFormProps) {
 
     const cookies = new Cookies()
+    const { user } = useUser()
 
     const [text, setText] = useState('')
     const [showPicker, setShowPicker] = useState(false)
     const [alertModal, setAlertModal] = useState(false)
+    const [image, setImage] = useState<File | null>(null)
 
+    const previewURL = useMemo(() => {
+        if (!image) {
+            return null
+        }
+        return URL.createObjectURL(image)
+
+    }, [image])
 
     const handleEmojiClick = (emoji: string) => {
         setText((prevtext) => prevtext + emoji)
+    }
+
+    function handleFileSelected(event: React.ChangeEvent<HTMLInputElement>) {
+        const fileList = event.target.files
+        if (fileList && fileList[0]) {
+            setImage(fileList[0]);
+        }
     }
 
     const handleSendPost = () => {
@@ -41,13 +52,16 @@ export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postForm
             setAlertModal(true)
         }
 
-        const newPost = {
-            user_id: cookies.get('user_id'),
-            content: text
+        const formData = new FormData();
+        formData.append('user_id', cookies.get('user_id'))
+        formData.append('content', text)
+        if (image) {
+            formData.append('imageUrl', image)
         }
 
-        onAddPost(newPost)
+        onAddPost(formData)
         setText('')
+        setImage(null)
         setShowPicker(false)
     }
 
@@ -56,8 +70,8 @@ export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postForm
             alertModal && <Modal
                 title='Aviso'
                 closeModal={setAlertModal}>
-                <Alert 
-                message="Para publicar é necessário estar logado. <br /> Crie uma conta ou faça login."
+                <Alert
+                    message="Para publicar é necessário estar logado. <br /> Crie uma conta ou faça login."
                 />
             </Modal>
         }
@@ -66,8 +80,24 @@ export function FormNewPost({ emojiButton = true, onAddPost, ...rest }: postForm
                 value={text}
                 onChange={(e) => setText(e.target.value)}
             />
-            {emojiButton &&
-                <ButtonEmoji onEmojiSelect={handleEmojiClick} showPicker={showPicker} setShowPicker={setShowPicker} />}
+            {previewURL && <img src={previewURL} className={styles.imagePost} />}
+
+            <div className={styles.optionsWrapper}>
+
+                {emojiButton &&
+                    <ButtonEmoji onEmojiSelect={handleEmojiClick} showPicker={showPicker} setShowPicker={setShowPicker} />}
+
+                <div className={styles.image}>
+                    {
+                        user?.role === 'admin' &&
+                        <label htmlFor="image">
+                            <img src={ImageIcon} className={styles.imageIcon} />
+                        </label>
+                    }
+                    <input type="file" accept="image/*" id="image" name="image" onChange={handleFileSelected} />
+                </div>
+            </div>
+
         </div>
 
         <div className={styles.sendPost}>

@@ -33,7 +33,7 @@ export function CardPost({ post }: contentProps) {
 
     const avatar = (post: PostsProps) => {
         if (post.user.avatar) {
-            return process.env.BACKEND_URL + '/upload/' + post.user.avatar.split('/').pop()
+            return process.env.BACKEND_URL + '/' + post.user.avatar
         }
 
         return undefined
@@ -73,7 +73,7 @@ export function CardPost({ post }: contentProps) {
                     <span>
                         {post.content}
                     </span>
-                    {post.imageUrl && <img src={post.imageUrl} />}
+                    {post.imageUrl && <img src={`${process.env.BACKEND_URL}/${post.imageUrl}`} />}
                 </div>
                 <div className={styles.engagement}>
                     <LikeButton post={post} likeFrom="post" />

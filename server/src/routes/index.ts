@@ -13,6 +13,6 @@ routes.use('/session', sessionRoutes)
 routes.use('/post', postRoutes)
 routes.use('/comment', commentRoutes)
 routes.use('/like', likeRoutes)
-routes.use('/upload', uploadRoutes)
+routes.use('/uploads', uploadRoutes)
 
 export { routes }

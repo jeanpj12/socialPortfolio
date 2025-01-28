@@ -23,7 +23,7 @@ export function Comment({ comment }: CommentsProps) {
 
     const avatar = (comment: CommentProps) => {
         if (comment.user.avatar) {
-            return process.env.BACKEND_URL + '/upload/' + comment.user.avatar.split('/').pop()
+            return process.env.BACKEND_URL + '/uploads/avatar/' + comment.user.avatar.split('/').pop()
         }
 
         return undefined

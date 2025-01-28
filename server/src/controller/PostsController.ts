@@ -23,30 +23,11 @@ class PostsController {
                         userId: true,
                         createdAt: true
                     }
-                },
-                // comments: {
-                //     select: {
-                //         comment: true,
-                //         id: true,
-                //         createdAt: true,
-                //         Like: {
-                //             select: {
-                //                 id: true,
-                //                 userId: true,
-                //                 createdAt: true,
-                //             }
-                //         },
-                //         user: {
-                //             select: {
-                //                 avatar: true,
-                //                 name: true,
-                //                 surname: true,
-                //                 id: true,
-                //                 status: true,
-                //             }
-                //         }
-                //     }
-                // }
+                }
+
+            },
+            orderBy: {
+                createdAt: 'desc'
             }
         }
         )
@@ -60,10 +41,11 @@ class PostsController {
         const bodySchema = z.object({
             user_id: z.string(),
             content: z.string(),
-            imageUrl: z.string().optional()
         })
 
-        const { user_id, content, imageUrl } = bodySchema.parse(req.body)
+        const { user_id, content } = bodySchema.parse(req.body)
+
+        const imageUrl = req.file?.path
 
         const userExist = await prisma.user.findFirst({ where: { id: user_id } })
 

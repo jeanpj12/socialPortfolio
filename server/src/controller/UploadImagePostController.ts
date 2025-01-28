@@ -6,15 +6,15 @@ import { prisma } from "@/database/prisma"
 import { hash } from 'bcrypt'
 import fs from "fs";
 
-class UploadController {
-    async create(req: Request, res: Response) {
+class UploadImagePostController {
+    async index(req: Request, res: Response) {
         const paramsSchema = z.object({
             filename: z.string()
         })
 
         const { filename } = paramsSchema.parse(req.params)
 
-        const imagePath = path.join(__dirname, '..', '..', 'uploads', 'avatar', filename)
+        const imagePath = path.join(__dirname, '..', '..', 'uploads', 'image-post', filename)
 
         if (!fs.existsSync(imagePath)) {
             res.status(404).send({ error: 'File not found' })
@@ -29,4 +29,4 @@ class UploadController {
     }
 }
 
-export { UploadController }
+export { UploadImagePostController }

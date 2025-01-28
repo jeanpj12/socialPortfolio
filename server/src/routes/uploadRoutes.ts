@@ -1,9 +1,12 @@
 import { Router } from "express";
-import { UploadController } from '../controller/UploadsController'
+import { UploadAvatarController } from '../controller/UploadsAvatarController'
+import { UploadImagePostController } from "@/controller/UploadImagePostController";
 
 const uploadRoutes = Router()
-const uploadController = new UploadController()
+const uploadAvatarController = new UploadAvatarController()
+const uploadImagePostController = new UploadImagePostController()
 
-uploadRoutes.get('/:filename', uploadController.create)
+uploadRoutes.get('/avatar/:filename', uploadAvatarController.index)
+uploadRoutes.get('/image-post/:filename', uploadImagePostController.index)
 
 export { uploadRoutes }
