@@ -3,7 +3,7 @@ import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
 
-const uploadDir = path.resolve(__dirname, '..', '..', 'uploads', 'avatar');
+const uploadDir = path.resolve(__dirname, '..', 'uploads', 'avatar');
 
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
