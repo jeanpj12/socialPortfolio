@@ -1,5 +1,4 @@
 import styles from './styles.module.css'
-import { FormContact } from '../../components/FormContact'
 import { SocialContact } from '../../components/SocialContact'
 import instagram from '../../assets/svg/instagram.svg'
 import github from '../../assets/svg/github.svg'

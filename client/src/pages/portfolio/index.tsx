@@ -1,6 +1,5 @@
 import styles from './styles.module.css'
 import { CardPost } from '../../components/CardPost'
-import { getPosts } from '../../services/getPosts'
 import { useEffect, useState } from 'react'
 import { PostsProps } from '../../types/Post'
 import { Loading } from '../../components/Loading'
@@ -38,7 +37,9 @@ export function Portfolio() {
     return (
         <div className={styles.container}>
             {loading && <Loading />}
-            <CardPost posts={posts} />
+            {posts.map((post) => (
+                <CardPost post={post} key={post.id} />
+            ))}
         </div>
     )
 }
