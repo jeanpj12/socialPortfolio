@@ -14,7 +14,7 @@ class UploadImagePostController {
 
         const { filename } = paramsSchema.parse(req.params)
 
-        const imagePath = path.join(__dirname, '..', '..', 'uploads', 'image-post', filename)
+        const imagePath = path.join(__dirname, '..', 'uploads', 'image-post', filename)
 
         if (!fs.existsSync(imagePath)) {
             res.status(404).send({ error: 'File not found' })

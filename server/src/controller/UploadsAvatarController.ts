@@ -14,7 +14,7 @@ class UploadAvatarController {
 
         const { filename } = paramsSchema.parse(req.params)
 
-        const imagePath = path.join(__dirname, '..', '..', 'uploads', 'avatar', filename)
+        const imagePath = path.join(__dirname, '..', 'uploads', 'avatar', filename)
 
         if (!fs.existsSync(imagePath)) {
             res.status(404).send({ error: 'File not found' })
