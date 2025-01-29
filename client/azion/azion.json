@@ -1,0 +1,58 @@
+{
+  "name": "socialPortfolio-FrontEnd",
+  "bucket": "socialPortfolio-FrontEnd",
+  "preset": "react",
+  "env": "production",
+  "prefix": "20250129141510",
+  "not-first-run": true,
+  "function": {
+    "id": 37363,
+    "name": "__DEFAULT__",
+    "file": ".edge/worker.js",
+    "args": "azion/args.json",
+    "instance-id": 35954,
+    "instance-name": "__DEFAULT__",
+    "cache-id": 0
+  },
+  "application": {
+    "id": 1738164135,
+    "name": "__DEFAULT__"
+  },
+  "domain": {
+    "id": 1738165781,
+    "name": "socialPortfolio-FrontEnd",
+    "domain_name": "kctqcmqiba.map.azionedge.net",
+    "url": "https://kctqcmqiba.map.azionedge.net"
+  },
+  "rt-purge": {
+    "purge_on_publish": true
+  },
+  "origin": [
+    {
+      "origin-id": 186272,
+      "origin-key": "feed5c19-7f83-4806-982d-2b0060bd8378",
+      "name": "origin-storage-default"
+    }
+  ],
+  "rules-engine": {
+    "created": false,
+    "rules": [
+      {
+        "id": 357041,
+        "name": "Set Storage Origin for All Requests",
+        "phase": "request"
+      },
+      {
+        "id": 357042,
+        "name": "Deliver Static Assets",
+        "phase": "request"
+      },
+      {
+        "id": 357043,
+        "name": "Redirect to index.html",
+        "phase": "request"
+      }
+    ]
+  },
+  "cache-settings": []
+}
