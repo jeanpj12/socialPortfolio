@@ -1,3 +1,5 @@
+![freepik__background__68232 (1)](https://github.com/user-attachments/assets/dc7f102b-9f1a-4109-9521-2e7629b0b582)
+
 # Social Portfólio
 
 Bem-vindo ao **Social Portfólio**! Este projeto foi desenvolvido com o objetivo de praticar e aprimorar minhas habilidades em **Front-end** e **Back-end**.
