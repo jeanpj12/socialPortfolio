@@ -60,12 +60,12 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
                         onClick={() => openSingUpModal(true)}
                     />
                 </div> : <div className={styles.doubleCol}>
-                    <Button
+                    {/* <Button
                         key='Perfil'
                         title='Perfil'
                         variation={2}
                         onClick={() => openLoginModal(true)}
-                    />
+                    /> */}
 
                     <Button
                         key='Sair'
