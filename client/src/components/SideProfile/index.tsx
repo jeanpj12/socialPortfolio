@@ -65,7 +65,7 @@ export function SideProfile({ openLoginModal, openSingUpModal, setLoading }: Pro
                         title='Perfil'
                         variation={2}
                         onClick={() => openLoginModal(true)}
-                    /> */}
+                    /> */} 
 
                     <Button
                         key='Sair'
