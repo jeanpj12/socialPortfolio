@@ -7,11 +7,11 @@ import { useEffect, useState } from 'react'
 import { FormLogin } from './components/FormLogin'
 import { FormSignUp } from './components/FormSignUp'
 import { Loading } from './components/Loading'
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 function App() {
     const analyticsCode = process.env.GTAG_ID
-
+    console.log(analyticsCode)
     const [loginModal, setLoginModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
     const [loading, setLoading] = useState(false)
@@ -19,7 +19,8 @@ function App() {
 
     useEffect(() => {
         if (analyticsCode) ReactGA.initialize(analyticsCode)
-        ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.send({ hitType: "pageview", page: window.location.pathname, title: "App.jsx" });
+
     }, [])
 
     return (
