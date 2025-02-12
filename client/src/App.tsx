@@ -3,12 +3,17 @@ import styles from './App.module.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes/Routes'
 import { Modal } from './modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FormLogin } from './components/FormLogin'
 import { FormSignUp } from './components/FormSignUp'
 import { Loading } from './components/Loading'
+import { analytics } from './services/Analytics'
 
 function App() {
+
+    useEffect(() => {
+        analytics
+    })
 
     const [loginModal, setLoginModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
@@ -17,21 +22,21 @@ function App() {
     return (
         <div>
             {loading && <Loading />}
-                {
-                    loginModal && <Modal
-                        title='Login'
-                        closeModal={setLoginModal}>
-                        <FormLogin setLoading={setLoading} />
-                    </Modal>
-                }
+            {
+                loginModal && <Modal
+                    title='Login'
+                    closeModal={setLoginModal}>
+                    <FormLogin setLoading={setLoading} />
+                </Modal>
+            }
 
-                {
-                    signUpModal && <Modal
-                        title='Login'
-                        closeModal={setSignUpModal}>
-                        <FormSignUp setLoading={setLoading} />
-                    </Modal>
-                }
+            {
+                signUpModal && <Modal
+                    title='Login'
+                    closeModal={setSignUpModal}>
+                    <FormSignUp setLoading={setLoading} />
+                </Modal>
+            }
 
             <div className={styles.container}>
                 <Router>
