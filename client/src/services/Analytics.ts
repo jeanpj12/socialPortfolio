@@ -17,7 +17,7 @@ export function analytics() {
 
         scriptTag.onload = () => {
             window.dataLayer = window.dataLayer || [];
-            function gtag(...args: any[]) { window.dataLayer.push(arguments); }
+            function gtag(...args: any[]) { window.dataLayer.push(args); }
             gtag('js', new Date());
             gtag('config', gtagId);
         };
