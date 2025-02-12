@@ -3,17 +3,12 @@ import styles from './App.module.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { routes } from './routes/Routes'
 import { Modal } from './modal'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FormLogin } from './components/FormLogin'
 import { FormSignUp } from './components/FormSignUp'
 import { Loading } from './components/Loading'
-import { analytics } from './services/Analytics'
 
 function App() {
-
-    useEffect(() => {
-        analytics
-    })
 
     const [loginModal, setLoginModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
