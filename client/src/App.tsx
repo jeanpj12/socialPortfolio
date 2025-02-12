@@ -7,50 +7,53 @@ import { useState } from 'react'
 import { FormLogin } from './components/FormLogin'
 import { FormSignUp } from './components/FormSignUp'
 import { Loading } from './components/Loading'
+import { GoogleAnalytics } from './components/Analytics'
 
 function App() {
-
     const [loginModal, setLoginModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
     const [loading, setLoading] = useState(false)
 
     return (
-        <div>
-            {loading && <Loading />}
-            {
-                loginModal && <Modal
-                    title='Login'
-                    closeModal={setLoginModal}>
-                    <FormLogin setLoading={setLoading} />
-                </Modal>
-            }
+        <>
+            <GoogleAnalytics />
+            <div>
+                {loading && <Loading />}
+                {
+                    loginModal && <Modal
+                        title='Login'
+                        closeModal={setLoginModal}>
+                        <FormLogin setLoading={setLoading} />
+                    </Modal>
+                }
 
-            {
-                signUpModal && <Modal
-                    title='Login'
-                    closeModal={setSignUpModal}>
-                    <FormSignUp setLoading={setLoading} />
-                </Modal>
-            }
+                {
+                    signUpModal && <Modal
+                        title='Login'
+                        closeModal={setSignUpModal}>
+                        <FormSignUp setLoading={setLoading} />
+                    </Modal>
+                }
 
-            <div className={styles.container}>
-                <Router>
-                    <SideProfile
-                        openLoginModal={setLoginModal}
-                        openSingUpModal={setSignUpModal}
-                        setLoading={setLoading}
-                    />
-                    <div className={styles.content}>
-                        <Routes>
-                            {routes.map((route) => {
-                                const Component = route.component
-                                return <Route key={route.path} path={route.path} element={<Component />} />
-                            })}
-                        </Routes>
-                    </div>
-                </Router>
+                <div className={styles.container}>
+                    <Router>
+                        <SideProfile
+                            openLoginModal={setLoginModal}
+                            openSingUpModal={setSignUpModal}
+                            setLoading={setLoading}
+                        />
+                        <div className={styles.content}>
+                            <Routes>
+                                {routes.map((route) => {
+                                    const Component = route.component
+                                    return <Route key={route.path} path={route.path} element={<Component />} />
+                                })}
+                            </Routes>
+                        </div>
+                    </Router>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 
