@@ -52,6 +52,7 @@ class CommentController {
                 postId: post_id
             },
             include: {
+                Like: true,
                 user: true
             }
         })
