@@ -12,7 +12,6 @@ import { SideAds } from "./components/SideAds";
 
 function App() {
   const analyticsCode = process.env.GTAG_ID;
-  console.log(analyticsCode);
   const [loginModal, setLoginModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const [loading, setLoading] = useState(false);

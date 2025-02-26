@@ -18,6 +18,11 @@ enum TypePost {
   normal
 }
 
+enum StatusPost {
+  UNDER_REVIEW
+  PUBLISHED
+}
+
 model User {
   id        String    @id @default(uuid())
   avatar    String?
@@ -38,13 +43,14 @@ model User {
 }
 
 model Post {
-  id        String    @id @default(uuid())
-  userId    String    @map("user_id")
+  id        String     @id @default(uuid())
+  userId    String     @map("user_id")
   content   String
-  imageUrl  String?   @map("image_url")
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @updatedAt @map("updated_at")
-  typePost  TypePost  @default(normal)
+  imageUrl  String?    @map("image_url")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime?  @updatedAt @map("updated_at")
+  typePost  TypePost   @default(normal)
+  status    StatusPost @default(UNDER_REVIEW)
 
   user     User       @relation(fields: [userId], references: [id])
   comments Comments[]
